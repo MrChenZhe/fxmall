@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.fxmall.goods.mapper.WxbGoodSkuMapper">
+    <!--增加-->
+    <insert id="insertWxbGoodSku" useGeneratedKeys="true" keyProperty="skuId" keyColumn="sku_id">
+        insert into wxb_good_sku(sku_id,sku_name,sku_cost,sku_price,sku_pmoney,good_id,order_no,service_money)
+        values(#{skuId},#{skuName},#{skuCost},#{skuPrice},#{skuPmoney},#{goodId},#{orderNo},#{serviceMoney});
+    </insert>
+    <!--更新-->
+    <insert id="updateWxbGoodSku" useGeneratedKeys="true" keyProperty="skuId" keyColumn="sku_id">
+        update wxb_good_sku set sku_name=#{skuName},sku_cost=#{skuCost},sku_price=#{skuPrice},
+        sku_pmoney=#{skuPmoney},good_id=#{goodId},order_no=#{orderNo},service_money=#{serviceMoney} where sku_id=#{skuId}
+    </insert>
+    <!--查找-->
+    <resultMap id="wxbGoodSkuResultMap" type="com.qianfeng.fxmall.goods.bean.WxbGoodSku">
+        <id property="skuId" column="sku_id" javaType="java.lang.String"></id>
+        <result property="skuName" column="sku_name" javaType="java.lang.String"></result>
+        <result property="skuCost" column="sku_cost" javaType="java.lang.String"></result>
+        <result property="skuPrice" column="sku_price" javaType="java.lang.String"></result>
+        <result property="skuPmoney" column="sku_pmoney" javaType="java.lang.String"></result>
+        <result property="goodId" column="good_id" javaType="java.lang.String"></result>
+        <result property="orderNo" column="order_no" javaType="java.lang.Long"></result>
+        <result property="serviceMoney" column="service_money" javaType="java.lang.String"></result>
+        <association property="wxbGood" javaType="com.qianfeng.fxmall.goods.bean.WxbGood">
+            <id property="goodId" column="good_id" javaType="java.lang.String"></id>
+            <result property="goodName" column="good_name" javaType="java.lang.String"></result>
+            <result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+            <result property="goodPic" column="good_pic" javaType="java.lang.String"></result>
+            <result property="goodPic1" column="good_pic1" javaType="java.lang.String"></result>
+            <result property="goodPic2" column="good_pic2" javaType="java.lang.String"></result>
+            <result property="promoteDesc" column="promote_desc" javaType="java.lang.String"></result>
+            <result property="skuTitle" column="sku_title" javaType="java.lang.String"></result>
+            <result property="skuCost" column="sku_cost" javaType="java.lang.String"></result>
+            <result property="skuPrice" column="sku_price" javaType="java.lang.String"></result>
+            <result property="skuPmoney" column="sku_pmoney" javaType="java.lang.String"></result>
+            <result property="copyIds" column="copy_ids" javaType="java.lang.String"></result>
+            <result property="copyDesc" column="copy_desc" javaType="java.lang.String"></result>
+            <result property="forwardLink" column="forward_link" javaType="java.lang.String"></result>
+            <result property="orderNo" column="order_no" javaType="java.lang.Long"></result>
+            <result property="typeId" column="type_id" javaType="java.lang.String"></result>
+            <result property="tags" column="tags" javaType="java.lang.String"></result>
+            <result property="state" column="state" javaType="java.lang.Long"></result>
+            <result property="createTime" column="create_time" ></result>
+            <result property="toped" column="toped" javaType="java.lang.Long"></result>
+            <result property="recomed" column="recomed" javaType="java.lang.Long"></result>
+            <result property="topedTime" column="toped_time" ></result>
+            <result property="recomedTime" column="recomed_time" ></result>
+            <result property="spcId" column="spc_id" javaType="java.lang.String"></result>
+            <result property="zonId" column="zon_id" javaType="java.lang.String"></result>
+            <result property="sellNum" column="sell_num" javaType="java.lang.Long"></result>
+            <result property="website" column="website" javaType="java.lang.String"></result>
+            <result property="iswxpay" column="iswxpay" javaType="java.lang.Long"></result>
+            <result property="isfdfk" column="isfdfk" javaType="java.lang.Long"></result>
+            <result property="leixingId" column="leixing_id" javaType="java.lang.Long"></result>
+            <result property="kfqq" column="kfqq" javaType="java.lang.String"></result>
+        </association>
+    </resultMap>
+    <select id="wxbGoodSkuSelect" resultMap="wxbGoodSkuResultMap">
+        select * from wxb_good g join wxb_good_sku s on g.good_id=s.good_id limit #{pageNo},#{size};
+    </select>
+    <!--删除-->
+    <delete id="wxbGoodSkuDelete">
+        delete from wxb_good_sku where sku_id=#{skuId};
+    </delete>
+</mapper>
