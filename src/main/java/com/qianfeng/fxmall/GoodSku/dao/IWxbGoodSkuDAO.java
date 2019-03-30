@@ -9,6 +9,6 @@ public interface IWxbGoodSkuDAO {
     List<WxbGoodSku> selectWxbGoodByPage(int Page);
     void  insertWxbGoodAndSku(WxbGoodSku WxbGoodSku);
     void  updateWxbGood(WxbGoodSku WxbGoodSku);
-    void deleteGood(Integer goodId);
+    void deleteGood(Integer GoodSkuId);
     int wxbGoodCount();
 }

@@ -15,6 +15,20 @@ public class WxbGoodSku {
   private String serviceMoney;
   private WxbGood wxbGood;
 
+  public WxbGoodSku() {
+  }
+
+  public WxbGoodSku(String skuId, String skuName, String skuCost, String skuPrice, String skuPmoney, String goodId, long orderNo, String serviceMoney) {
+    this.skuId = skuId;
+    this.skuName = skuName;
+    this.skuCost = skuCost;
+    this.skuPrice = skuPrice;
+    this.skuPmoney = skuPmoney;
+    this.goodId = goodId;
+    this.orderNo = orderNo;
+    this.serviceMoney = serviceMoney;
+  }
+
   public WxbGood getWxbGood() {
     return wxbGood;
   }

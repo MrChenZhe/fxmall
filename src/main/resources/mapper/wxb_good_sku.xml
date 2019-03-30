@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qianfeng.fxmall.goods.mapper.WxbGoodSkuMapper">
+<mapper namespace="com.qianfeng.fxmall.GoodSku.mapper.WxbGoodSkuMapper">
     <!--增加-->
     <insert id="insertWxbGoodSku" useGeneratedKeys="true" keyProperty="skuId" keyColumn="sku_id">
         insert into wxb_good_sku(sku_id,sku_name,sku_cost,sku_price,sku_pmoney,good_id,order_no,service_money)
@@ -14,7 +14,7 @@
         sku_pmoney=#{skuPmoney},good_id=#{goodId},order_no=#{orderNo},service_money=#{serviceMoney} where sku_id=#{skuId}
     </insert>
     <!--查找-->
-    <resultMap id="wxbGoodSkuResultMap" type="com.qianfeng.fxmall.goods.bean.WxbGoodSku">
+    <resultMap id="wxbGoodSkuResultMap" type="com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku">
         <id property="skuId" column="sku_id" javaType="java.lang.String"></id>
         <result property="skuName" column="sku_name" javaType="java.lang.String"></result>
         <result property="skuCost" column="sku_cost" javaType="java.lang.String"></result>

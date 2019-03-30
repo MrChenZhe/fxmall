@@ -53,7 +53,7 @@
         <result property="isfdfk" column="isfdfk" javaType="java.lang.Integer"></result>
         <result property="leixingId" column="leixing_id" javaType="java.lang.Integer"></result>
         <result property="kfqq" column="kfqq" javaType="java.lang.String"></result>
-        <collection property="wxbGoodSkuList" ofType="com.qianfeng.fxmall.goods.bean.WxbGoodSku" >
+        <collection property="wxbGoodSkuList" ofType="com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku" >
             <id property="skuId" column="sku_id" javaType="java.lang.String"></id>
             <result property="skuName" column="sku_name" javaType="java.lang.String"></result>
             <result property="skuCost" column="sku_cost" javaType="java.lang.String"></result>
