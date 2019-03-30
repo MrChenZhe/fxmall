@@ -4,7 +4,7 @@ import com.qianfeng.fxmall.GoodSku.dao.impl.WxbGoodSkuDAOImpl;
 import org.junit.Test;
 
 import java.util.List;
-
+//
 public class WxbGoodSkuTest {
     IWxbGoodSkuDAO gd =  new WxbGoodSkuDAOImpl();
     @Test
