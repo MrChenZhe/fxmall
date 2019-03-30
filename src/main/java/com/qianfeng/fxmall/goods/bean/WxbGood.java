@@ -1,6 +1,8 @@
 package com.qianfeng.fxmall.goods.bean;
 
 
+import com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku;
+
 import java.sql.Timestamp;
 import java.util.List;
 

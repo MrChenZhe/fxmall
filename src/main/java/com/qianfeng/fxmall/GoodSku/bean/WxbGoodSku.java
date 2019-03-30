@@ -1,5 +1,7 @@
-package com.qianfeng.fxmall.goods.bean;
+package com.qianfeng.fxmall.GoodSku.bean;
 
+
+import com.qianfeng.fxmall.goods.bean.WxbGood;
 
 public class WxbGoodSku {
 

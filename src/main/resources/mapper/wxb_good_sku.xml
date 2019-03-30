@@ -58,10 +58,14 @@
         </association>
     </resultMap>
     <select id="wxbGoodSkuSelect" resultMap="wxbGoodSkuResultMap">
-        select * from wxb_good g join wxb_good_sku s on g.good_id=s.good_id limit #{pageNo},#{size};
+        select * from  wxb_good_sku s  limit #{pageNo},#{size};
     </select>
     <!--删除-->
     <delete id="wxbGoodSkuDelete">
         delete from wxb_good_sku where sku_id=#{skuId};
     </delete>
+    <!--查找总数-->
+    <select id="selectCount" resultType="java.lang.Integer">
+    select count(*) from wxb_good_sku
+  </select>
 </mapper>

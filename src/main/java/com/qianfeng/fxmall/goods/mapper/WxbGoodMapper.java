@@ -4,7 +4,7 @@ import com.qianfeng.fxmall.goods.bean.WxbGood;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-//
+
 public interface WxbGoodMapper {
     void  insertWxbGoodAndSku(WxbGood wxbGood);
     void  updateWxbGood(WxbGood wxbGood);
