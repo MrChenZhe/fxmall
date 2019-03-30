@@ -13,7 +13,7 @@ public class Good {
     IWxbGoodDAO dao = new WxbGoodDAOImpl();
     @Test
     public void count(){
-        //123
+        //123321
         int i = dao.wxbGoodCount();
         System.out.println(i);
     }
