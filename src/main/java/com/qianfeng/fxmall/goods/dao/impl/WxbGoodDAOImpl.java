@@ -23,23 +23,31 @@ public class WxbGoodDAOImpl implements IWxbGoodDAO {
         WxbGoodMapper mapper = MyBatisSessionFactoryUtils.getSesson().getMapper(WxbGoodMapper.class);
         mapper.insertWxbGoodAndSku(wxbGood);
         MyBatisSessionFactoryUtils.getSesson().commit();
-    }
+}
 
     @Override
     public void updateWxbGood(WxbGood wxbGood) {
         WxbGoodMapper mapper = MyBatisSessionFactoryUtils.getSesson().getMapper(WxbGoodMapper.class);
         mapper.updateWxbGood(wxbGood);
+        MyBatisSessionFactoryUtils.getSesson().commit();
     }
 
     @Override
     public void deleteGood(Integer goodId) {
         WxbGoodMapper mapper = MyBatisSessionFactoryUtils.getSesson().getMapper(WxbGoodMapper.class);
         mapper.deleteGood(goodId);
+        MyBatisSessionFactoryUtils.getSesson().commit();
     }
 
     @Override
     public int wxbGoodCount() {
         WxbGoodMapper mapper = MyBatisSessionFactoryUtils.getSesson().getMapper(WxbGoodMapper.class);
         return mapper.selectCount();
+    }
+
+    @Override
+    public String selectGoodName(String goodName) {
+        WxbGoodMapper mapper = MyBatisSessionFactoryUtils.getSesson().getMapper(WxbGoodMapper.class);
+        return mapper.selectGoodName(goodName);
     }
 }

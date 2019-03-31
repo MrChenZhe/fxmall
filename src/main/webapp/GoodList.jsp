@@ -190,7 +190,7 @@
                         </li>
 
                         <li>
-                            <a href="http://localhost:8081/cust/goods/add">
+                            <a href="http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodAdd&op=selectgoodType">
                                 <i class="icon-pencil"></i>
                                 增加商品
                             </a>

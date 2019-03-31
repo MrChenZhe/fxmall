@@ -72,4 +72,8 @@
     <delete id="deleteGood">
       delete from wxb_good where good_id=#{goodId}
     </delete>
+    <!--查找good_name是否重复-->
+    <select id="selectGoodName" resultType="java.lang.String">
+        select good_name from wxb_good where good_id=#{goodID}
+    </select>
 </mapper>

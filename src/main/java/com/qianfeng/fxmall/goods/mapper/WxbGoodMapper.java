@@ -11,5 +11,6 @@ public interface WxbGoodMapper {
     List<WxbGood> selectGoodAndStu(@Param("pageNo") Integer pageNo,@Param("size") Integer size);
     void deleteGood(@Param("goodId") Integer goodId);
     int selectCount();
+    String selectGoodName(@Param("goodId") String goodId);
 }
 

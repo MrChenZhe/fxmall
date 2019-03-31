@@ -10,4 +10,5 @@ public interface IWxbGoodDAO {
     void  updateWxbGood(WxbGood wxbGood);
     void deleteGood(Integer goodId);
     int wxbGoodCount();
+    String selectGoodName(String goodName);
 }

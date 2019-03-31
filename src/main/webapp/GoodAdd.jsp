@@ -457,7 +457,7 @@
                     </h1>
                 </div>
 
-                <form method="post" name="copy_form" id="copy_form" action="http://localhost:8081/cust/goods/add" enctype="multipart/form-data">
+                <form method="post" name="copy_form" id="copy_form" action="http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodAdd&op=add" enctype="multipart/form-data">
                     <div class="widget-main">
                         <input type="hidden" id="sku_str" name="sku_str" value="">
                         <input type="hidden" id="ctype" name="ctype" value="custGood">
@@ -491,23 +491,9 @@
                                     <select name="type_id" id="type_id" style="width:252px;font-size:14px" class="selectBox">
                                         <option value="">请选择...</option>
 
-
-                                        <option value="01">保健品</option>
-
-                                        <option value="02">饰品</option>
-
-                                        <option value="03">护肤品</option>
-
-                                        <option value="04">床上用品</option>
-
-                                        <option value="05">生活用品</option>
-
-                                        <option value="06">减肥产品</option>
-
-                                        <option value="07">113</option>
-
-                                        <option value="08">23</option>
-
+                                        <c:forEach var="wxbGoodType" items="${wxbGoodTypes}">
+                                        <option value="${wxbGoodType.typeId}">${wxbGoodType.typeName}</option>
+                                        </c:forEach>
 
                                     </select>
                                 </td>
@@ -805,10 +791,10 @@
 <!-- menu over-->
 
 <script type="text/javascript">
-    var baseUrl = '';
+    var baseUrl = "http://localhost:8080/fxmall";
     function submitData(){
         var gid = "";
-        var url = "cgood!saveGood.ct";
+        var url = "WxbGood.do?m=wxbGoodAdd&op=add";
         //var spc_id = getRadioValue('scopy_id');
         var spc_ids = getCheckBoxValue('scopy_id');
         var zon_ids = getCheckBoxValue('zcopy_id');

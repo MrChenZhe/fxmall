@@ -35,5 +35,6 @@
     <mappers>
         <mapper resource="mapper/wxb_good.xml"/>
         <mapper resource="mapper/wxb_good_sku.xml"/>
+        <mapper resource="mapper/wxb_good_type.xml"/>
     </mappers>
 </configuration>

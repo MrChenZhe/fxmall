@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.fxmall.WxbGoodTypes.mapper.WxbGoodTypeMapper">
+    <resultMap id="goodTypeResultMap" type="com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType">
+        <id property="typeId" column="type_id" javaType="java.lang.String"></id>
+        <result property="typeName" column="type_name" javaType="java.lang.String"></result>
+        <result property="parentId" column="parent_id" javaType="java.lang.String"></result>
+        <result property="typeTag" column="type_tag" javaType="java.lang.String"></result>
+        <result property="orderNo" column="order_no" javaType="java.lang.Long"></result>
+        <result property="alisaCode" column="alisa_code" javaType="java.lang.String"></result>
+    </resultMap>
+
+    <select id="selectGoodTypeById" resultMap="goodTypeResultMap">
+        select * from wxb_good_type where type_id = #{typeId}
+    </select>
+
+    <select id="selectGoodTypeByPage" resultMap="goodTypeResultMap">
+        select * from wxb_good_type limit #{pageNo},#{size};
+    </select>
+
+    <select id="selectGoodTypeCount" resultType="java.lang.Integer">
+        select count(*) from wxb_good_type
+    </select>
+
+    <select id="selectAllGoodType" resultMap="goodTypeResultMap">
+        select * from wxb_good_type
+    </select>
+
+    <insert id="insertGoodType" >
+        INSERT INTO `wxb_good_type` VALUES (#{typeId},#{typeName},#{parentId},#{typeTag},#{orderNo},#{alisaCode});
+    </insert>
+
+    <update id="updateGoodType">
+        update wxb_good_type set type_name=#{typeName},parent_id=#{parentId},type_tag=#{typeTag},order_no=#{orderNo},alisa_code=#{alisaCode}
+        where type_id=#{typeId}
+    </update>
+
+    <delete id="deleteGoodType">
+        delete from wxb_good_type where type_id=#{typeId};
+    </delete>
+</mapper>
