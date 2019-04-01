@@ -13,4 +13,5 @@ public interface IWxbGoodTypeService {
     void insertGoodType(WxbGoodType WxbGoodType);
     void updateGoodType(WxbGoodType WxbGoodType);
     void deleteGoodType(String typeId);
+
 }

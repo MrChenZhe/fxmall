@@ -14,4 +14,5 @@ public interface WxbGoodTypeMapper {
     void insertGoodType(WxbGoodType WxbGoodType);
     void updateGoodType(WxbGoodType WxbGoodType);
     void deleteGoodType(@Param("typeId") String typeId);
+
 }

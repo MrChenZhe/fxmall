@@ -11,4 +11,5 @@ public interface WxbGoodSkuMapper {
     List<WxbGoodSku> wxbGoodSkuSelect(@Param("pageNo") Integer pageNo, @Param("size") Integer size);
     void wxbGoodSkuDelete(@Param("skuId") Integer skuId);
     int selectCount();
+    String selectID(@Param("sku_id") String sku_id);
 }

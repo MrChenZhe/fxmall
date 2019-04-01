@@ -1,15 +1,10 @@
 package com.qianfeng.fxmall.GoodSku.controller;
 
 
-import com.qianfeng.fxmall.GoodSku.service.IWxbGoodService;
-import com.qianfeng.fxmall.commons.info.SystemConstantsUtils;
-import com.qianfeng.fxmall.goods.bean.WxbGood;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 public class WxbGoodSkuServlet extends BaseServlet {
 

@@ -2,6 +2,7 @@ package com.qianfeng.fxmall.goods.service.impl;
 
 import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
 import com.qianfeng.fxmall.WxbGoodTypes.service.impl.WxbGoodTypeServiceImpl;
+import com.qianfeng.fxmall.commons.info.RandString;
 import com.qianfeng.fxmall.commons.info.SystemConstantsUtils;
 import com.qianfeng.fxmall.goods.bean.WxbGood;
 import com.qianfeng.fxmall.goods.dao.IWxbGoodDAO;
@@ -51,5 +52,14 @@ public class WxbGoodServiceImpl implements IWxbGoodService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String createId() {
+        String id = "14886110";
+        do {
+            id = RandString.generateString(10);
+        }while(selectGoodName(id));
+        return id;
     }
 }

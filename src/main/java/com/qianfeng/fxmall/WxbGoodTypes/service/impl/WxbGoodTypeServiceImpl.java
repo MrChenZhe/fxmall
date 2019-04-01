@@ -3,6 +3,7 @@ import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
 import com.qianfeng.fxmall.WxbGoodTypes.dao.IWxbGoodTypeDAO;
 import com.qianfeng.fxmall.WxbGoodTypes.dao.impl.WxbGoodTypeDAOImpl;
 import com.qianfeng.fxmall.WxbGoodTypes.service.IWxbGoodTypeService;
+import com.qianfeng.fxmall.commons.info.RandString;
 import com.qianfeng.fxmall.commons.info.SystemConstantsUtils;
 
 import java.util.List;
@@ -45,5 +46,9 @@ public class WxbGoodTypeServiceImpl implements IWxbGoodTypeService {
     public void deleteGoodType(String typeId) {
         goodTypeDAO.deleteGoodType(typeId);
     }
+
+
+
+
 }
 

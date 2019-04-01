@@ -14,4 +14,8 @@ public class SystemConstantsUtils {
          */
         public final static Integer PAGE_SIZE = 5;
     }
+    /**
+     * 虚拟路径
+     */
+    public static final String  UPLOADPATH = "E:/AppachServerFile/fxmall/";
 }

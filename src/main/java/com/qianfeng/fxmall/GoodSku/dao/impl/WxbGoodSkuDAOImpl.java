@@ -36,4 +36,8 @@ public class WxbGoodSkuDAOImpl implements IWxbGoodSkuDAO {
     public int wxbGoodCount() {
      return  mapper.selectCount();
     }
+    @Override
+    public String selectID(String sku_id) {
+     return mapper.selectID(sku_id);
+    }
 }

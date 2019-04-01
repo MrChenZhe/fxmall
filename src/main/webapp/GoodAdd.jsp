@@ -674,7 +674,6 @@
                                     <span class="lbl">&nbsp;<a href="http://localhost:8081/cust/goods/add#">12</a></span><br>
 
 
-
                                 </td>
                             </tr>
 

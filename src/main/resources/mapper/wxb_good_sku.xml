@@ -68,4 +68,7 @@
     <select id="selectCount" resultType="java.lang.Integer">
     select count(*) from wxb_good_sku
   </select>
+    <select id="selectID" resultType="java.lang.String">
+        select sku_id from wxb_good_sku where sku_id=#{skuId};
+    </select>
 </mapper>

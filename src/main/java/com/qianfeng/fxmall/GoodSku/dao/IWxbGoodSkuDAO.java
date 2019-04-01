@@ -11,4 +11,5 @@ public interface IWxbGoodSkuDAO {
     void  updateWxbGood(WxbGoodSku WxbGoodSku);
     void deleteGood(Integer GoodSkuId);
     int wxbGoodCount();
+    String selectID(String sku_id);
 }

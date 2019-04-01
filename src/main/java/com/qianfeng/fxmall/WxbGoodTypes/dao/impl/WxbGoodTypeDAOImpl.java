@@ -55,4 +55,6 @@ public class WxbGoodTypeDAOImpl implements IWxbGoodTypeDAO {
     mapper.deleteGoodType(typeId);
   MyBatisSessionFactoryUtils.getSesson().commit();
  }
+
+
 }
