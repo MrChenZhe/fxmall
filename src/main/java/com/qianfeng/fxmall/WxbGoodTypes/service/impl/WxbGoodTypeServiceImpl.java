@@ -5,11 +5,16 @@ import com.qianfeng.fxmall.WxbGoodTypes.dao.impl.WxbGoodTypeDAOImpl;
 import com.qianfeng.fxmall.WxbGoodTypes.service.IWxbGoodTypeService;
 import com.qianfeng.fxmall.commons.info.RandString;
 import com.qianfeng.fxmall.commons.info.SystemConstantsUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component("WxbGoodTypeServiceImpl")
 public class WxbGoodTypeServiceImpl implements IWxbGoodTypeService {
-    IWxbGoodTypeDAO goodTypeDAO =new WxbGoodTypeDAOImpl();
+    @Qualifier("WxbGoodTypeDAOImpl")
+    @Autowired
+    private WxbGoodTypeDAOImpl goodTypeDAO;
 
 
     @Override

@@ -8,11 +8,16 @@ import com.qianfeng.fxmall.goods.bean.WxbGood;
 import com.qianfeng.fxmall.goods.dao.IWxbGoodDAO;
 import com.qianfeng.fxmall.goods.dao.impl.WxbGoodDAOImpl;
 import com.qianfeng.fxmall.goods.service.IWxbGoodService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component("WxbGoodServiceImpl")
 public class WxbGoodServiceImpl implements IWxbGoodService {
-    IWxbGoodDAO goodDAO = new WxbGoodDAOImpl();
+    @Qualifier("WxbGoodDAOImpl")
+    @Autowired
+    private IWxbGoodDAO goodDAO;
     @Override
     public List<WxbGood> selectWxbGoodByPage(int Page) {
         Page = (Page-1)* SystemConstantsUtils.Page.PAGE_SIZE;

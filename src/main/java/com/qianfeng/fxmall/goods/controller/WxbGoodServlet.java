@@ -13,6 +13,7 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class WxbGoodServlet extends BaseServlet {
-    private IWxbGoodService goodService = new WxbGoodServiceImpl();
 
+   private  IWxbGoodService goodService =super.goodService;
     /**
      * 分页
      */

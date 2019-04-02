@@ -2,11 +2,13 @@ package com.qianfeng.fxmall.goods.bean;
 
 
 import com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku;
+import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
-
-public class WxbGood {
+@Component("WxbGood")
+public class WxbGood implements Serializable {
 
   private String goodId;
   private String goodName;
