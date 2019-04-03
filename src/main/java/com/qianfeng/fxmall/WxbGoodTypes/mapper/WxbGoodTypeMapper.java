@@ -2,10 +2,11 @@ package com.qianfeng.fxmall.WxbGoodTypes.mapper;
 
 import com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku;
 import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface WxbGoodTypeMapper {
     WxbGoodType selectGoodTypeById(@Param("typeId") String id);
     List<WxbGoodType> selectGoodTypeByPage(@Param("pageNo") Integer pageNo,@Param("size") Integer size);

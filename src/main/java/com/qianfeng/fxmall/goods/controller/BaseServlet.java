@@ -1,10 +1,6 @@
 package com.qianfeng.fxmall.goods.controller;
 
-import com.qianfeng.fxmall.goods.service.IWxbGoodService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +18,7 @@ public class BaseServlet extends HttpServlet {
             Logger.getLogger("开始执行了方法"+m);
             Method method = this.getClass().getMethod(m, HttpServletRequest.class, HttpServletResponse.class);
             method.invoke(this,req,resp);
-            Logger.getLogger("执行完了方法"+m);
+            Logger.getLogger("开始完了方法"+m);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,15 +28,5 @@ public class BaseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req,resp);
     }
-    @Autowired
-    public IWxbGoodService goodService;
-    @Override
-    public void init(ServletConfig config){
-        try {
-            super.init(config);
-            SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,config.getServletContext());
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

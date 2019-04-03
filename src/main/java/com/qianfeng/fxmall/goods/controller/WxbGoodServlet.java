@@ -24,12 +24,14 @@ import java.util.List;
 import java.util.UUID;
 
 public class WxbGoodServlet extends BaseServlet {
+    ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+    IWxbGoodService goodService = applicationContext.getBean(WxbGoodServiceImpl.class);
 
-   private  IWxbGoodService goodService =super.goodService;
     /**
      * 分页
      */
     public void wxbGoodList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String page = req.getParameter("pageNo");
         page=(page==null)?"1":page;
         int pageNo = Integer.parseInt(page);

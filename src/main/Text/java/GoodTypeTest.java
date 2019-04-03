@@ -1,12 +1,21 @@
 import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
 import com.qianfeng.fxmall.WxbGoodTypes.service.IWxbGoodTypeService;
 import com.qianfeng.fxmall.WxbGoodTypes.service.impl.WxbGoodTypeServiceImpl;
+import com.qianfeng.fxmall.goods.service.IWxbGoodService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring.xml")
 public class GoodTypeTest {
-    IWxbGoodTypeService gts = new WxbGoodTypeServiceImpl();
+    @Qualifier("WxbGoodTypeServiceImpl")
+    @Autowired
+    IWxbGoodTypeService gts ;
     @Test
     public void testAdd(){
         WxbGoodType wxbGoodType = new WxbGoodType("09","日用品","121332","生活用品",1,"666666");
