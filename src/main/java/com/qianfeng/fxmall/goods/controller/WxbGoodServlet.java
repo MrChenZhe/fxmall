@@ -4,6 +4,7 @@ import com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku;
 import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
 import com.qianfeng.fxmall.commons.info.RandString;
 import com.qianfeng.fxmall.commons.info.SystemConstantsUtils;
+import com.qianfeng.fxmall.commons.mybatis.SpringApplicationContextUtils;
 import com.qianfeng.fxmall.goods.bean.WxbGood;
 import com.qianfeng.fxmall.goods.service.IWxbGoodService;
 import com.qianfeng.fxmall.goods.service.impl.WxbGoodServiceImpl;
@@ -13,6 +14,7 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletException;
@@ -24,8 +26,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class WxbGoodServlet extends BaseServlet {
-    ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
-    IWxbGoodService goodService = applicationContext.getBean(WxbGoodServiceImpl.class);
+    IWxbGoodService goodService =  SpringApplicationContextUtils.getApplicationContext().getBean(WxbGoodServiceImpl.class);
 
     /**
      * 分页

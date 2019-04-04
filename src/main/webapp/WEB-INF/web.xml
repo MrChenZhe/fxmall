@@ -8,7 +8,12 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name>Archetype Created Web Application</display-name>
+
+  <listener>
+    <listener-class>com.qianfeng.fxmall.commons.Listener.SpringApplicationListener</listener-class>
+  </listener>
   <servlet>
+
     <servlet-name>WxbGood</servlet-name>
     <servlet-class>com.qianfeng.fxmall.goods.controller.WxbGoodServlet</servlet-class>
   </servlet>
