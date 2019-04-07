@@ -8,7 +8,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page isELIgnored="false"%>
+
 <!DOCTYPE html>
 <!-- saved from url=(0037)http://localhost:8081/cust/goods/list -->
 <html lang="en">
@@ -496,7 +496,7 @@
                                             <td class="center">
                                                 1
                                             </td>
-                                            <td class="left"><a href="http://localhost:8081/cust/goods/list#" onclick="window.location.href= '/cust/goods/add?good_id=14886110 '">${good.goodName}</a></td>
+                                            <td class="left"><a href="http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodSelectByName&goodId=${good.goodId}" onclick="window.location.href= 'http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodSelectByName&goodId=${good.goodId}">${good.goodName}</a></td>
                                             <td class="center">${good.skuPrice}</td>
                                             <td class="center">${good.skuPmoney}</td>
                                             <td class="center">${good.createTime}</td>

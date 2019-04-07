@@ -14,4 +14,5 @@ public interface IWxbGoodService {
     List<WxbGoodType> selectAllGoodType();
     Boolean selectGoodName(String goodId);
     String createId();
+    WxbGood selectGoodById(String goodId);
 }

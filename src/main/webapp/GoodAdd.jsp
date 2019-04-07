@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page isELIgnored="false"%>
 <!DOCTYPE html>
 <!-- saved from url=(0036)http://localhost:8081/cust/goods/add -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./static/default.css" rel="stylesheet" id="lhgdialoglink">
@@ -480,7 +481,7 @@
                                     <span class="red">*</span><strong>商品名称：</strong>
                                 </td>
                                 <td>
-                                    <input type="text" id="good_name" name="good_name" value="">
+                                    <input type="text" id="good_name" name="good_name" value="${good.goodName}">
                                 </td>
 
                             </tr>
@@ -489,7 +490,7 @@
                                 <td align="right"><span class="red">*</span><strong>商品类型：</strong></td>
                                 <td>
                                     <select name="type_id" id="type_id" style="width:252px;font-size:14px" class="selectBox">
-                                        <option value="">请选择...</option>
+                                        <option value=${good.typeId}>请选择...</option>
 
                                         <c:forEach var="wxbGoodType" items="${wxbGoodTypes}">
                                         <option value="${wxbGoodType.typeId}">${wxbGoodType.typeName}</option>
@@ -501,13 +502,13 @@
                             <tr>
                                 <td align="right"><span class="red">*</span><strong>排序编号：</strong></td>
                                 <td>
-                                    <input type="text" id="order_no" name="order_no" onkeyup="checkVal2(this);" value="">
+                                    <input type="text" id="order_no" name="order_no" onkeyup="checkVal2(this);" value=${good.orderNo}>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right"><span class="red">*</span><strong>购买作弊值：</strong></td>
                                 <td>
-                                    <input type="text" id="sell_num" name="sell_num" onkeyup="checkVal2(this);" value="">
+                                    <input type="text" id="sell_num" name="sell_num" onkeyup="checkVal2(this);" value=${good.sellNum}>
                                 </td>
                             </tr>
                             <tr>
@@ -515,7 +516,7 @@
                                 <td>
                                     <div id="sm_div">
 
-                                        <img src="./static/no_pic.png" id="sm_yl" style="width:240px;height:150px;border:1px solid #ddd;">
+                                        <img src="http://localhost:8080/forFxmall/0c633458-0c8f-4039-a91b-dd41eef5c4b8.jpg" id="sm_yl" style="width:240px;height:150px;border:1px solid #ddd;">
 
 
                                     </div>
@@ -583,6 +584,15 @@
                                             <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)分成</th>
                                             <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)客服提成</th>
                                         </tr>
+                                        <c:forEach var="sku" items="${good.wxbGoodSkuList}">
+                                            <tr>
+                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.skuName}</th>
+                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.skuCost}</th>
+                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.skuPrice}</th>
+                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.skuPmoney}</th>
+                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.serviceMoney}</th>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody></table>
 
 

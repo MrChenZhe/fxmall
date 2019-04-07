@@ -11,4 +11,5 @@ public interface IWxbGoodDAO {
     void deleteGood(Integer goodId);
     int wxbGoodCount();
     String selectGoodName(String goodName);
+    WxbGood selectGoodById(String goodId);
 }

@@ -13,5 +13,6 @@ public interface WxbGoodMapper {
     void deleteGood(@Param("goodId") Integer goodId);
     int selectCount();
     String selectGoodName(@Param("goodId") String goodId);
+    WxbGood selectGoodById(@Param("goodId") String goodId);
 }
 

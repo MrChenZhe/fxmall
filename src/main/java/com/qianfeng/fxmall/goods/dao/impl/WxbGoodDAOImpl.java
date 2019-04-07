@@ -44,4 +44,10 @@ public class WxbGoodDAOImpl implements IWxbGoodDAO {
     public String selectGoodName(String goodName) {
         return wxbGoodMapper.selectGoodName(goodName);
     }
+
+    @Override
+    public WxbGood selectGoodById(String goodId) {
+
+        return wxbGoodMapper.selectGoodById(goodId);
+    }
 }

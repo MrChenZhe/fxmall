@@ -67,4 +67,9 @@ public class WxbGoodServiceImpl implements IWxbGoodService {
         }while(selectGoodName(id));
         return id;
     }
+
+    @Override
+    public WxbGood selectGoodById(String goodId) {
+        return goodDAO.selectGoodById(goodId);
+    }
 }

@@ -1,7 +1,11 @@
 package com.qianfeng.fxmall.goods.controller;
 
 import com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku;
+import com.qianfeng.fxmall.GoodSku.service.IWxbGoodSkuService;
+import com.qianfeng.fxmall.GoodSku.service.impl.WxbGoodSkuServiceImpl;
 import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
+import com.qianfeng.fxmall.WxbGoodTypes.service.IWxbGoodTypeService;
+import com.qianfeng.fxmall.WxbGoodTypes.service.impl.WxbGoodTypeServiceImpl;
 import com.qianfeng.fxmall.commons.info.RandString;
 import com.qianfeng.fxmall.commons.info.SystemConstantsUtils;
 import com.qianfeng.fxmall.commons.mybatis.SpringApplicationContextUtils;
@@ -26,45 +30,46 @@ import java.util.List;
 import java.util.UUID;
 
 public class WxbGoodServlet extends BaseServlet {
-    IWxbGoodService goodService =  SpringApplicationContextUtils.getApplicationContext().getBean(WxbGoodServiceImpl.class);
-
+    IWxbGoodService goodService = SpringApplicationContextUtils.getApplicationContext().getBean(WxbGoodServiceImpl.class);
+    IWxbGoodTypeService typeService = SpringApplicationContextUtils.getApplicationContext().getBean(WxbGoodTypeServiceImpl.class);
+    IWxbGoodSkuService skuService = SpringApplicationContextUtils.getApplicationContext().getBean(WxbGoodSkuServiceImpl.class);
     /**
      * 分页
      */
     public void wxbGoodList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String page = req.getParameter("pageNo");
-        page=(page==null)?"1":page;
+        page = (page == null) ? "1" : page;
         int pageNo = Integer.parseInt(page);
         List<WxbGood> wxbGoods = goodService.selectWxbGoodByPage(pageNo);
         String goodName = wxbGoods.get(0).getGoodName();
-        req.setAttribute("wxbGoods",wxbGoods);
-        req.getRequestDispatcher("GoodList.jsp").forward(req,resp);
+        req.setAttribute("wxbGoods", wxbGoods);
+        req.getRequestDispatcher("GoodList.jsp").forward(req, resp);
     }
+
     /**
      * 添加
      */
     public void wxbGoodAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, FileUploadException {
         String op = req.getParameter("op");
-        int i=0;
-        if("selectgoodType".equals(op)){
-            List<WxbGoodType> wxbGoodTypes = goodService.selectAllGoodType();
-            req.setAttribute("wxbGoodTypes",wxbGoodTypes);
-            req.getRequestDispatcher("GoodAdd.jsp").forward(req,resp);
-        }else if("add".equals(op)){
+        int i = 0;
+        if ("selectgoodType".equals(op)) {
+            List<WxbGoodType> wxbGoodTypes = typeService.selectAllGoodType();
+            req.setAttribute("wxbGoodTypes", wxbGoodTypes);
+            req.getRequestDispatcher("GoodAdd.jsp").forward(req, resp);
+        } else if ("add".equals(op)) {
             WxbGood wxbGood = new WxbGood();
             WxbGoodSku wxbGoodSku = new WxbGoodSku();
             int count = goodService.wxbGoodCount();
             int pageLast = count % SystemConstantsUtils.Page.PAGE_SIZE == 0 ? (count / SystemConstantsUtils.Page.PAGE_SIZE) : count / SystemConstantsUtils.Page.PAGE_SIZE + 1;
-//            文件域读取
-            if(ServletFileUpload.isMultipartContent(req)){
+
+            if (ServletFileUpload.isMultipartContent(req)) {
                 ServletFileUpload upload = new ServletFileUpload();
                 FileItemIterator item = upload.getItemIterator(req);
-                while (item.hasNext()){
+                while (item.hasNext()) {
                     FileItemStream stream = item.next();
                     String value = Streams.asString(stream.openStream(), "UTF-8");
-                    if(stream.isFormField()){
-                        switch (stream.getFieldName()){
+                    if (stream.isFormField()) {
+                        switch (stream.getFieldName()) {
                             case "good_name":
                                 wxbGood.setGoodName(value);
                                 break;
@@ -107,7 +112,7 @@ public class WxbGoodServlet extends BaseServlet {
                                 wxbGoodSku.setSkuCost(value);
                                 break;
                             case "sku_price":
-                                wxbGoodSku.setSkuPrice (value);
+                                wxbGoodSku.setSkuPrice(value);
                                 break;
                             case "sku_pmoney":
                                 wxbGoodSku.setSkuPmoney(value);
@@ -116,21 +121,21 @@ public class WxbGoodServlet extends BaseServlet {
                                 wxbGoodSku.setServiceMoney(value);
                                 break;
                         }
-                    }else{
+                    } else {
                         String filePath = stream.getName();
-                        if(filePath!=null){
-                            String fileDB = UUID.randomUUID().toString()+filePath.substring(filePath.lastIndexOf("."));
-                            filePath=SystemConstantsUtils.UPLOADPATH+fileDB;
+                        if (filePath != null) {
+                            String fileDB = UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."));
+                            filePath = SystemConstantsUtils.UPLOADPATH + fileDB;
                             BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(filePath));
-                            Streams.copy(stream.openStream(),outputStream,true);
-                            if(i<3){
-                                if(i==0){
+                            Streams.copy(stream.openStream(), outputStream, true);
+                            if (i < 3) {
+                                if (i == 0) {
                                     wxbGood.setGoodPic(fileDB);
                                     i++;
-                                }else if(i==1){
+                                } else if (i == 1) {
                                     wxbGood.setGoodPic1(fileDB);
                                     i++;
-                                }else if(i==2){
+                                } else if (i == 2) {
                                     wxbGood.setGoodPic2(fileDB);
                                     i++;
                                 }
@@ -146,8 +151,19 @@ public class WxbGoodServlet extends BaseServlet {
             req.getRequestDispatcher("WxbGood.do?m=wxbGoodList&pageNo=" + pageLast).forward(req, resp);
         }
     }
-    public int parse(String value){
+
+    public int parse(String value) {
         int i = Integer.parseInt(value);
         return i;
+    }
+
+    /**
+     * 点击商品名称查找商品
+     */
+    public void wxbGoodSelectByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String goodId= req.getParameter("goodId");
+        WxbGood good = goodService.selectGoodById(goodId);
+        req.setAttribute("good",good);
+        req.getRequestDispatcher("GoodAdd.jsp").forward(req, resp);
     }
 }
