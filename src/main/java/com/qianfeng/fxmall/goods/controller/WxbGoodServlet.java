@@ -30,9 +30,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class WxbGoodServlet extends BaseServlet {
-    IWxbGoodService goodService = SpringApplicationContextUtils.getApplicationContext().getBean(WxbGoodServiceImpl.class);
-    IWxbGoodTypeService typeService = SpringApplicationContextUtils.getApplicationContext().getBean(WxbGoodTypeServiceImpl.class);
-    IWxbGoodSkuService skuService = SpringApplicationContextUtils.getApplicationContext().getBean(WxbGoodSkuServiceImpl.class);
+    IWxbGoodService goodService = (IWxbGoodService) SpringApplicationContextUtils.getApplicationContext().getBean("WxbGoodServiceImpl");
+    IWxbGoodTypeService typeService = (IWxbGoodTypeService) SpringApplicationContextUtils.getApplicationContext().getBean("WxbGoodTypeServiceImpl");
+    IWxbGoodSkuService skuService = (IWxbGoodSkuService) SpringApplicationContextUtils.getApplicationContext().getBean("WxbGoodSkuServiceImpl");
     /**
      * 分页
      */
