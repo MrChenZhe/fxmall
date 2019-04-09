@@ -14,7 +14,7 @@ import java.util.List;
 public class WxbGoodTypeServiceImpl implements IWxbGoodTypeService {
     @Qualifier("WxbGoodTypeDAOImpl")
     @Autowired
-    private WxbGoodTypeDAOImpl goodTypeDAO;
+    private IWxbGoodTypeDAO goodTypeDAO;
 
 
     @Override

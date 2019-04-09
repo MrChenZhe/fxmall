@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.fxmall.WxbMemebers.mapper.WxbMemeberMapper">
+    <insert id="insertWxbMemeber" >
+     INSERT INTO `wxb_memeber` VALUES (#{memeberId}, #{account}, #{qqNum},#{email},#{phone}, #{recomUser},#{registerTime}, #{payAccount}, #{name}, #{password},#{visitCode},#{useRecom},#{levelCode},#{mid},#{updateTime});
+    </insert>
+    <!--更新-->
+    <update id="updateWxbMemeber">
+         update wxb_memeber set account=#{account},qq_num=#{qqNum},
+         email=#{email},phone=#{phone},recom_user=#{recomUser},register_time=#{registerTime},
+         pay_account=#{payAccount},name=#{name},password=#{password},visit_code=#{visitCode},
+         use_recom=#{useRecom},level_code=#{levelCode},mid=#{mid},update_time=#{updateTime}
+          where memeber_id=#{memeberId}
+    </update>
+    <!--查询-->
+    <resultMap id="BaseResultMap" type="com.qianfeng.fxmall.WxbMemebers.bean.WxbMemeber">
+        <id property="memeberId" column="memeber_id" javaType="java.lang.String"></id>
+        <result property="account" column="account" javaType="java.lang.String"></result>
+        <result property="qqNum" column="qq_num" javaType="java.lang.String"></result>
+        <result property="email" column="email" javaType="java.lang.String"></result>
+        <result property="phone" column="phone" javaType="java.lang.String"></result>
+        <result property="recomUser" column="recom_user" javaType="java.lang.String"></result>
+        <result property="registerTime" column="register_time" javaType="java.sql.Timestamp"></result>
+        <result property="payAccount" column="pay_account" javaType="java.lang.String"></result>
+        <result property="name" column="name" javaType="java.lang.String"></result>
+        <result property="password" column="password" javaType="java.lang.String"></result>
+        <result property="visitCode" column="visit_code" javaType="java.lang.String"></result>
+        <result property="useRecom" column="use_recom" javaType="java.lang.String"></result>
+        <result property="levelCode" column="level_code" javaType="java.lang.String"></result>
+        <result property="mid" column="mid" javaType="java.lang.Long"></result>
+        <result property="updateTime" column="update_time" javaType="java.sql.Timestamp"></result>
+    </resultMap>
+    <select id="selectWxbMemeber" resultMap="BaseResultMap">
+        select * from wxb_memeber  limit #{pageNo},#{size};
+    </select>
+
+    <select id="selectWxbMemeberById" resultMap="BaseResultMap">
+        select * from wxb_memeber  where memeber_id =#{memeberId};
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+    select count(*) from wxb_memeber
+  </select>
+    <!--查找good_name是否重复-->
+    <select id="selectWxbMemeberName" resultMap="BaseResultMap">
+        select * from wxb_memeber where name=#{name}
+    </select>
+    <delete id="deleteWxbMemeber">
+      delete from wxb_memeber where memeber_id =#{memeberId}
+    </delete>
+</mapper>

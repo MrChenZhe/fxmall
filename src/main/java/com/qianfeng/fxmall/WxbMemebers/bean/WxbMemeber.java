@@ -1,4 +1,4 @@
-package com.qianfeng.po;
+package com.qianfeng.fxmall.WxbMemebers.bean;
 
 
 public class WxbMemeber {

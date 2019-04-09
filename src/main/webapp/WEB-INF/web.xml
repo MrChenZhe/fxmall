@@ -13,12 +13,19 @@
     <listener-class>com.qianfeng.fxmall.commons.Listener.SpringApplicationListener</listener-class>
   </listener>
   <servlet>
-
     <servlet-name>WxbGood</servlet-name>
     <servlet-class>com.qianfeng.fxmall.goods.controller.WxbGoodServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>WxbMemeber</servlet-name>
+    <servlet-class>com.qianfeng.fxmall.WxbMemebers.controller.WxbMemeberServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WxbGood</servlet-name>
     <url-pattern>/WxbGood.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WxbMemeber</servlet-name>
+    <url-pattern>/WxbMemeber.do</url-pattern>
   </servlet-mapping>
 </web-app>

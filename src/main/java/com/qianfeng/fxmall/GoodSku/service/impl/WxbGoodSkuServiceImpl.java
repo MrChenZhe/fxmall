@@ -17,7 +17,7 @@ import java.util.List;
 public class WxbGoodSkuServiceImpl implements IWxbGoodSkuService {
     @Qualifier("WxbGoodSkuDAOImpl")
     @Autowired
-    private WxbGoodSkuDAOImpl goodDAO;
+    private IWxbGoodSkuDAO goodDAO;
 
 
     @Override
