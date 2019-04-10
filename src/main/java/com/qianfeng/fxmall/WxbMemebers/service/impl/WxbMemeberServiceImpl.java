@@ -61,6 +61,7 @@ public class WxbMemeberServiceImpl implements IWxbMemeberService {
         System.out.println(wxbMemeber.getName()+"---------------"+wxbMemeber.getPassword());
         List<WxbMemeber> wxbMemebers = wxbMemeberMapper.selectWxbMemeberName(wxbMemeber.getName());
         String newPassword = MD5Utils.md5(wxbMemeber.getPassword(),wxbMemeber.getName());
+        System.out.println("待验证密码加密后结果为"+newPassword);
         WxbMemeber b = null;
         for(WxbMemeber w:wxbMemebers){
             if(w.getPassword().equals(newPassword)){

@@ -18,8 +18,15 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,22 +35,27 @@ import java.io.*;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
-
-public class WxbGoodServlet extends BaseServlet {
-    IWxbGoodService goodService = (IWxbGoodService) SpringApplicationContextUtils.getApplicationContext().getBean("WxbGoodServiceImpl");
-    IWxbGoodTypeService typeService = (IWxbGoodTypeService) SpringApplicationContextUtils.getApplicationContext().getBean("WxbGoodTypeServiceImpl");
-    IWxbGoodSkuService skuService = (IWxbGoodSkuService) SpringApplicationContextUtils.getApplicationContext().getBean("WxbGoodSkuServiceImpl");
+@Controller
+public class WxbGoodServlet {
+    @Qualifier("WxbGoodServiceImpl")
+    @Autowired
+    IWxbGoodService goodService;
+    @Qualifier("WxbGoodTypeServiceImpl")
+    @Autowired
+    IWxbGoodTypeService typeService;
+    @Qualifier("WxbGoodSkuServiceImpl")
+    @Autowired
+    IWxbGoodSkuService skuService;
     /**
      * 分页
      */
-    public void wxbGoodList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String page = req.getParameter("pageNo");
-        page = (page == null) ? "1" : page;
-        int pageNo = Integer.parseInt(page);
+    @RequestMapping("/wxbGoodList")
+    public String wxbGoodList(int pageNo, Model model){
+        pageNo = (pageNo == 0) ? 1 : pageNo;
         List<WxbGood> wxbGoods = goodService.selectWxbGoodByPage(pageNo);
         String goodName = wxbGoods.get(0).getGoodName();
-        req.setAttribute("wxbGoods", wxbGoods);
-        req.getRequestDispatcher("GoodList.jsp").forward(req, resp);
+        model.addAttribute("wxbGoods",wxbGoods);
+        return "GoodList";
     }
 
     /**

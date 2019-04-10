@@ -4,6 +4,8 @@ import com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku;
 import com.qianfeng.fxmall.GoodSku.service.IWxbGoodSkuService;
 import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
 import com.qianfeng.fxmall.WxbGoodTypes.service.IWxbGoodTypeService;
+import com.qianfeng.fxmall.WxbMemebers.VO.JsonVO;
+import com.qianfeng.fxmall.WxbMemebers.VO.LoginVO;
 import com.qianfeng.fxmall.WxbMemebers.bean.WxbMemeber;
 import com.qianfeng.fxmall.WxbMemebers.service.IWxbMemeberService;
 import com.qianfeng.fxmall.commons.info.SystemConstantsUtils;
@@ -17,6 +19,11 @@ import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,25 +34,26 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
-
-public class WxbMemeberServlet extends BaseServlet {
-    IWxbMemeberService wxbMemeberServiceImpl = (IWxbMemeberService) SpringApplicationContextUtils.getApplicationContext().getBean("wxbMemeberServiceImpl");
+@Controller
+public class WxbMemeberServlet  {
+    @Autowired
+    IWxbMemeberService wxbMemeberServiceImpl;
 
     /**
      *登录验证
      */
-    public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        WxbMemeber wxbMemeber  = (WxbMemeber) SpringApplicationContextUtils.getApplicationContext().getBean("wxbMemeber");
-        wxbMemeber.setName(username);
-        wxbMemeber.setPassword(password);
+    @PostMapping("/memeberlogin")
+    @ResponseBody
+    public JsonVO login(LoginVO loginVO){
+        System.out.println(loginVO);
         WxbMemeber validation = wxbMemeberServiceImpl.loginCheck(wxbMemeber);
         req.getSession().setAttribute("wxbMemeber",validation);
         if(validation!=null){
-            req.getRequestDispatcher("WxbGood.do?m=wxbGoodList").forward(req,resp);
+            String json = "true#登录成功";
+            resp.getWriter().write(json);
         }else{
-            req.getRequestDispatcher("login.jsp").forward(req,resp);
+            String json = "true#登录成功";
+            resp.getWriter().write(json);
         }
     }
 }

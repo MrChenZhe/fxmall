@@ -31,4 +31,12 @@ public class WxbMemeberTest {
         wxbMemeber.setRegisterTime(timestamp);
         wxbMemeberServiceImpl.insertWxbMemeber(wxbMemeber);
     }
+    @Test
+    public void loginValidate(){
+        WxbMemeber wxbMemeber = new WxbMemeber();
+        wxbMemeber.setName("陈哲");
+        wxbMemeber.setPassword("123456");
+        WxbMemeber memeber = wxbMemeberServiceImpl.loginCheck(wxbMemeber);
+        System.out.println(memeber.getEmail());
+    }
 }

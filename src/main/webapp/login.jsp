@@ -400,11 +400,12 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_307679'%3E%3C/span%3E%3Cscri
 
             var action;
             if($("#user_type").val()==0){
-                action = "http://localhost:8080/WxbMemeber.do?m=login";
+                action = "memeberlogin";
             }else{
-                action = "http://localhost:8080/WxbMemeber.do?m=login";
+                action = "memeberlogin";
             }
             var data = form.serialize();
+            alert("表单的值为"+data);
             var loading = App.showLoading(submitBtn);
             $.ajax({
                 url: action,
@@ -412,6 +413,7 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_307679'%3E%3C/span%3E%3Cscri
                 data: data,
                 dataType: 'text',
                 success: function (response) {
+                    alert("返回的值为"+response)
                     var suc = response.split("#")[0];
                     var msg = response.split("#")[1];
                     loading.revert();
@@ -420,8 +422,9 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_307679'%3E%3C/span%3E%3Cscri
                         $.cookie('loginErrorTimes',0);
                         toastr.success('', '登录成功');
                         if($("#user_type").val()==0){
-                            window.location.href = "/user/index";
+                            window.location.href = "WxbGood.do?m=wxbGoodList";
                         }else{
+                            alert("账号密码错误");
                             window.location.href = "/cust/index";
                         }
                     } else {

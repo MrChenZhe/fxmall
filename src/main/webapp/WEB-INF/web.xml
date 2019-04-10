@@ -8,22 +8,42 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name>Archetype Created Web Application</display-name>
+  <!--监听器的方式进行Spring容器的初始化-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring.xml</param-value>
+  </context-param>
+  <!--ContextLoaderListener用来监听Tomcat启动的时候进行Spring容器的初始化-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+
 
   <listener>
     <listener-class>com.qianfeng.fxmall.commons.Listener.SpringApplicationListener</listener-class>
   </listener>
   <servlet>
-    <servlet-name>WxbGood</servlet-name>
-    <servlet-class>com.qianfeng.fxmall.goods.controller.WxbGoodServlet</servlet-class>
+    <servlet-name>dispatcherservlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value></param-value>
+    </init-param>
   </servlet>
+  
+
   <servlet>
     <servlet-name>WxbMemeber</servlet-name>
     <servlet-class>com.qianfeng.fxmall.WxbMemebers.controller.WxbMemeberServlet</servlet-class>
   </servlet>
+  
   <servlet-mapping>
-    <servlet-name>WxbGood</servlet-name>
-    <url-pattern>/WxbGood.do</url-pattern>
+    <servlet-name>dispatcherservlet</servlet-name>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+
   <servlet-mapping>
     <servlet-name>WxbMemeber</servlet-name>
     <url-pattern>/WxbMemeber.do</url-pattern>

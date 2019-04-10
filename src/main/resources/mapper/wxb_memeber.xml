@@ -27,7 +27,7 @@
         <result property="name" column="name" javaType="java.lang.String"></result>
         <result property="password" column="password" javaType="java.lang.String"></result>
         <result property="visitCode" column="visit_code" javaType="java.lang.String"></result>
-        <result property="useRecom" column="use_recom" javaType="java.lang.String"></result>
+        <result property="useRecom" column="use_recom" javaType="java.lang.Long"></result>
         <result property="levelCode" column="level_code" javaType="java.lang.String"></result>
         <result property="mid" column="mid" javaType="java.lang.Long"></result>
         <result property="updateTime" column="update_time" javaType="java.sql.Timestamp"></result>

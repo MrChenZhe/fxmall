@@ -1,6 +1,8 @@
 package com.qianfeng.fxmall.WxbMemebers.bean;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class WxbMemeber {
 
   private String memeberId;
