@@ -33,10 +33,7 @@
   </servlet>
   
 
-  <servlet>
-    <servlet-name>WxbMemeber</servlet-name>
-    <servlet-class>com.qianfeng.fxmall.WxbMemebers.controller.WxbMemeberServlet</servlet-class>
-  </servlet>
+
   
   <servlet-mapping>
     <servlet-name>dispatcherservlet</servlet-name>
@@ -44,8 +41,4 @@
   </servlet-mapping>
   
 
-  <servlet-mapping>
-    <servlet-name>WxbMemeber</servlet-name>
-    <url-pattern>/WxbMemeber.do</url-pattern>
-  </servlet-mapping>
 </web-app>

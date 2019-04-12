@@ -12,6 +12,6 @@ public interface WxbMemeberMapper {
     List<WxbMemeber> selectWxbMemeber(@Param("pageNo") int pageNo,@Param("size") int size);
     WxbMemeber selectWxbMemeberById(@Param("memeberId") String memeberId);
     int selectCount();
-    List<WxbMemeber> selectWxbMemeberName(@Param("name") String name);
+    WxbMemeber selectWxbMemeberAccount(@Param("account") String account);
     void deleteWxbMemeber(@Param("memeberId") String memeberId);
 }

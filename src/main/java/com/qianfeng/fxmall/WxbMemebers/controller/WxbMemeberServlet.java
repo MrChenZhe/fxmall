@@ -4,6 +4,8 @@ import com.qianfeng.fxmall.GoodSku.bean.WxbGoodSku;
 import com.qianfeng.fxmall.GoodSku.service.IWxbGoodSkuService;
 import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
 import com.qianfeng.fxmall.WxbGoodTypes.service.IWxbGoodTypeService;
+import com.qianfeng.fxmall.WxbMemebers.Exception.AccountNotFoundException;
+import com.qianfeng.fxmall.WxbMemebers.Exception.PasswordWrongException;
 import com.qianfeng.fxmall.WxbMemebers.VO.JsonVO;
 import com.qianfeng.fxmall.WxbMemebers.VO.LoginVO;
 import com.qianfeng.fxmall.WxbMemebers.bean.WxbMemeber;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,16 +47,23 @@ public class WxbMemeberServlet  {
      */
     @PostMapping("/memeberlogin")
     @ResponseBody
-    public JsonVO login(LoginVO loginVO){
-        System.out.println(loginVO);
-        WxbMemeber validation = wxbMemeberServiceImpl.loginCheck(wxbMemeber);
-        req.getSession().setAttribute("wxbMemeber",validation);
-        if(validation!=null){
-            String json = "true#登录成功";
-            resp.getWriter().write(json);
-        }else{
-            String json = "true#登录成功";
-            resp.getWriter().write(json);
+    public JsonVO login(LoginVO loginVO, HttpSession session){
+        JsonVO jsonVO = new JsonVO("true","登录成功");
+        try {
+            System.out.println(loginVO);
+            WxbMemeber validation  = wxbMemeberServiceImpl.loginCheck(loginVO);
+            if(validation!=null){
+                session.setAttribute("wxbMemeber",validation);
+            }
+        } catch (PasswordWrongException e) {
+            e.printStackTrace();
+            jsonVO.setSuc("false");
+            jsonVO.setMsg("密码错误");
+        } catch (AccountNotFoundException e) {
+            e.printStackTrace();
+            jsonVO.setSuc("false");
+            jsonVO.setMsg("未找到该账号");
         }
+        return jsonVO;
     }
 }

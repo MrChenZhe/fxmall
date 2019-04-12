@@ -1,120 +1,63 @@
 package com.qianfeng.fxmall.WxbMemebers.VO;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LoginVO {
-    private String memeberId;
-    private String account;
-    private String qqNum;
-    private String email;
-    private String phone;
-    private String recomUser;
-    private String payAccount;
-    private String name;
+    private int user_ck;
+    private int ismobile;
+    private int user_type;
+    private String remember;
+    private String captcha;
+    private String username;
     private String password;
-    private String visitCode;
-    private long useRecom;
-    private String levelCode;
-    private long mid;
 
-    public LoginVO() {
+    public int getUser_ck() {
+        return user_ck;
     }
 
-    public LoginVO(String memeberId, String account, String qqNum, String email, String phone, String recomUser, String payAccount, String name, String password, String visitCode, long useRecom, String levelCode, long mid) {
-        this.memeberId = memeberId;
-        this.account = account;
-        this.qqNum = qqNum;
-        this.email = email;
-        this.phone = phone;
-        this.recomUser = recomUser;
-        this.payAccount = payAccount;
-        this.name = name;
-        this.password = password;
-        this.visitCode = visitCode;
-        this.useRecom = useRecom;
-        this.levelCode = levelCode;
-        this.mid = mid;
+    public void setUser_ck(int user_ck) {
+        this.user_ck = user_ck;
     }
 
-    @Override
-    public String toString() {
-        return "LoginVO{" +
-                "memeberId='" + memeberId + '\'' +
-                ", account='" + account + '\'' +
-                ", qqNum='" + qqNum + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", recomUser='" + recomUser + '\'' +
-                ", payAccount='" + payAccount + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", visitCode='" + visitCode + '\'' +
-                ", useRecom=" + useRecom +
-                ", levelCode='" + levelCode + '\'' +
-                ", mid=" + mid +
-                '}';
+    public int getIsmobile() {
+        return ismobile;
     }
 
-    public String getMemeberId() {
-        return memeberId;
+    public void setIsmobile(int ismobile) {
+        this.ismobile = ismobile;
     }
 
-    public void setMemeberId(String memeberId) {
-        this.memeberId = memeberId;
+    public int getUser_type() {
+        return user_type;
     }
 
-    public String getAccount() {
-        return account;
+    public void setUser_type(int user_type) {
+        this.user_type = user_type;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public String getRemember() {
+        return remember;
     }
 
-    public String getQqNum() {
-        return qqNum;
+    public void setRemember(String remember) {
+        this.remember = remember;
     }
 
-    public void setQqNum(String qqNum) {
-        this.qqNum = qqNum;
+    public String getCaptcha() {
+        return captcha;
     }
 
-    public String getEmail() {
-        return email;
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getUsername() {
+        return username;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getRecomUser() {
-        return recomUser;
-    }
-
-    public void setRecomUser(String recomUser) {
-        this.recomUser = recomUser;
-    }
-
-    public String getPayAccount() {
-        return payAccount;
-    }
-
-    public void setPayAccount(String payAccount) {
-        this.payAccount = payAccount;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -125,35 +68,29 @@ public class LoginVO {
         this.password = password;
     }
 
-    public String getVisitCode() {
-        return visitCode;
+    public LoginVO(int user_ck, int ismobile, int user_type, String remember, String captcha, String username, String password) {
+        this.user_ck = user_ck;
+        this.ismobile = ismobile;
+        this.user_type = user_type;
+        this.remember = remember;
+        this.captcha = captcha;
+        this.username = username;
+        this.password = password;
     }
 
-    public void setVisitCode(String visitCode) {
-        this.visitCode = visitCode;
+    public LoginVO() {
     }
 
-    public long getUseRecom() {
-        return useRecom;
-    }
-
-    public void setUseRecom(long useRecom) {
-        this.useRecom = useRecom;
-    }
-
-    public String getLevelCode() {
-        return levelCode;
-    }
-
-    public void setLevelCode(String levelCode) {
-        this.levelCode = levelCode;
-    }
-
-    public long getMid() {
-        return mid;
-    }
-
-    public void setMid(long mid) {
-        this.mid = mid;
+    @Override
+    public String toString() {
+        return "LoginVO{" +
+                "user_ck=" + user_ck +
+                ", ismobile=" + ismobile +
+                ", user_type=" + user_type +
+                ", remember='" + remember + '\'' +
+                ", captcha='" + captcha + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

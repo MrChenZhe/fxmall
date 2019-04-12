@@ -494,7 +494,7 @@
                                      <c:forEach var="good" items="${wxbGoods}">
                                         <tr>
                                             <td class="center">
-                                                1
+                                                    ${good.goodId}
                                             </td>
                                             <td class="left"><a href="http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodSelectByName&goodId=${good.goodId}" onclick="window.location.href= 'http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodSelectByName&goodId=${good.goodId}">${good.goodName}</a></td>
                                             <td class="center">${good.skuPrice}</td>
@@ -521,124 +521,7 @@
                                             </td>
                                         </tr>
                                      </c:forEach>
-                                        <%--<tr>
-                                            <td class="center">
-                                                2
-                                            </td>
 
-                                            <td class="left"><a href="http://localhost:8081/cust/goods/list#" onclick="window.location.href= '/cust/goods/add?good_id=pb1n3rya '">444</a></td>
-                                            <td class="center">1|</td>
-                                            <td class="center">1|</td>
-                                            <td class="center">2016-05-09 19:07:23</td>
-
-                                            <td class="center">
-
-
-                                                <span class="label label-sm label-primary">未置顶</span>
-
-                                            </td>
-
-
-                                            <td class="center">
-
-
-                                                <span class="label label-sm label-grey">未推荐</span>
-
-                                            </td>
-
-                                            <td class="center">
-
-                                                <span class="label label-sm label-success">审核有效</span>
-
-
-
-                                            </td>
-
-                                            <td class="left">
-                                                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group" style="align:center">
-                                                    <button class="btn btn-xs btn-primary" onclick="window.location.href= '/cust/goods/add?good_id=pb1n3rya '">
-                                                        <i class="icon-edit bigger-120"></i>
-                                                    </button>
-
-                                                    <button class="btn btn-xs btn-danger" onclick="trashGood( 'pb1n3rya ', '1 ')">
-                                                        <i class="icon-trash bigger-120"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-
-                                        </tr>
-
-
-                                        <tr>
-                                            <td class="center">
-                                                3
-                                            </td>
-
-                                            <td class="left"><a href="http://localhost:8081/cust/goods/list#" onclick="window.location.href= '/cust/goods/add?good_id=44671132 '">33</a></td>
-                                            <td class="center">1|</td>
-                                            <td class="center">1|</td>
-                                            <td class="center">2016-05-09 18:43:53</td>
-
-                                            <td class="center">
-
-
-                                                <span class="label label-sm label-primary">未置顶</span>
-
-                                            </td>
-
-
-                                            <td class="center">
-
-
-                                                <span class="label label-sm label-grey">未推荐</span>
-
-                                            </td>
-
-                                            <td class="center">
-
-                                                <span class="label label-sm label-success">审核有效</span>
-                                            </td>
-                                            <td class="left">
-                                                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group" style="align:center">
-                                                    <button class="btn btn-xs btn-primary" onclick="window.location.href= '/cust/goods/add?good_id=44671132 '">
-                                                        <i class="icon-edit bigger-120"></i>
-                                                    </button>
-                                                    <button class="btn btn-xs btn-danger" onclick="trashGood( '44671132 ', '1 ')">
-                                                        <i class="icon-trash bigger-120"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="center">
-                                                4
-                                            </td>
-                                            <td class="left"><a href="http://localhost:8081/cust/goods/list#" onclick="window.location.href= '/cust/goods/add?good_id=73515420 '">111111</a></td>
-                                            <td class="center">2|</td>
-                                            <td class="center">2|</td>
-                                            <td class="center">2016-03-22 00:27:07</td>
-                                            <td class="center">
-                                                <span class="label label-sm label-primary">未置顶</span>
-                                            </td>
-                                            <td class="center">
-                                                <span class="label label-sm label-grey">未推荐</span>
-                                            </td>
-                                            <td class="center">
-                                                <span class="label label-sm label-success">审核有效</span>
-                                            </td>
-
-                                            <td class="left">
-                                                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group" style="align:center">
-                                                    <button class="btn btn-xs btn-primary" onclick="window.location.href= '/cust/goods/add?good_id=73515420 '">
-                                                        <i class="icon-edit bigger-120"></i>
-                                                    </button>
-                                                    <button class="btn btn-xs btn-danger" onclick="trashGood( '73515420 ', '1 ')">
-                                                        <i class="icon-trash bigger-120"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-
-                                        </tr>--%>
                                         </tbody>
                                     </table>
 
@@ -646,13 +529,27 @@
 
                                         <div class="col-sm-6">
                                             <div class="sender" id="sample-table-2_info">
-                                                共 4 条记录，每页 5 条，共 1 页
+                                                共 ${count} 条记录，每页 ${size} 条，共 ${pageNum} 页
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="dataTables_paginate paging_bootstrap sender">
                                                 <ul class="pagination">
-                                                    <li><a href="http://localhost:8081/cust/goods/list#" class="active">1</a></li>
+                                                    <c:choose>
+                                                        <c:when test="${pageNo>1}">
+                                                            <a href="wxbGoodList?pageNo=${pageNo-1}">上一页</a>
+                                                        </c:when>
+                                                        <c:otherwise><a href="">上一页</a></c:otherwise>
+                                                    </c:choose>
+                                                    <c:forEach var="pageNow" begin="1" end="${pageNum}" step="1">
+                                                    <li><a href="wxbGoodList?pageNo=${pageNow}" class="active">${pageNow}</a></li>
+                                                    </c:forEach>
+                                                    <c:choose>
+                                                        <c:when test="${pageNo<pageNum}">
+                                                            <a href="wxbGoodList?pageNo=${pageNo+1}">下一页</a>
+                                                        </c:when>
+                                                        <c:otherwise><a href="">下一页</a></c:otherwise>
+                                                    </c:choose>
                                                 </ul>
                                             </div>
                                         </div>

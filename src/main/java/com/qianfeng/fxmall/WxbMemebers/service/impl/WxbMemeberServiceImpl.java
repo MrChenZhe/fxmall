@@ -1,5 +1,8 @@
 package com.qianfeng.fxmall.WxbMemebers.service.impl;
 
+import com.qianfeng.fxmall.WxbMemebers.Exception.AccountNotFoundException;
+import com.qianfeng.fxmall.WxbMemebers.Exception.PasswordWrongException;
+import com.qianfeng.fxmall.WxbMemebers.VO.LoginVO;
 import com.qianfeng.fxmall.WxbMemebers.bean.WxbMemeber;
 import com.qianfeng.fxmall.WxbMemebers.mapper.WxbMemeberMapper;
 import com.qianfeng.fxmall.WxbMemebers.service.IWxbMemeberService;
@@ -23,7 +26,7 @@ public class WxbMemeberServiceImpl implements IWxbMemeberService {
         }while (memeberId.equals(WxbMemeber.getMemeberId()));
         WxbMemeber.setMemeberId(memeberId);
         System.out.println("插入的ID为--------->"+memeberId);
-        String MD5Password = MD5Utils.md5(WxbMemeber.getPassword(),WxbMemeber.getName());
+        String MD5Password = MD5Utils.md5(WxbMemeber.getPassword(),WxbMemeber.getAccount());
         System.out.println("插入的密码为--------->"+MD5Password);
         WxbMemeber.setPassword(MD5Password);
         wxbMemeberMapper.insertWxbMemeber(WxbMemeber);
@@ -57,19 +60,20 @@ public class WxbMemeberServiceImpl implements IWxbMemeberService {
     }
 
     @Override
-    public WxbMemeber loginCheck(WxbMemeber wxbMemeber) {
-        System.out.println(wxbMemeber.getName()+"---------------"+wxbMemeber.getPassword());
-        List<WxbMemeber> wxbMemebers = wxbMemeberMapper.selectWxbMemeberName(wxbMemeber.getName());
-        String newPassword = MD5Utils.md5(wxbMemeber.getPassword(),wxbMemeber.getName());
-        System.out.println("待验证密码加密后结果为"+newPassword);
-        WxbMemeber b = null;
-        for(WxbMemeber w:wxbMemebers){
-            if(w.getPassword().equals(newPassword)){
-                b=w;
-                break;
-            }
+    public WxbMemeber loginCheck(LoginVO loginVO) throws PasswordWrongException, AccountNotFoundException {
+        System.out.println(loginVO.getUsername()+"---------------"+loginVO.getPassword());
+        WxbMemeber wxbMemeber = wxbMemeberMapper.selectWxbMemeberAccount(loginVO.getUsername());
+        if(wxbMemeber==null){
+            throw  new AccountNotFoundException("账号错误");
+
         }
-        return b;
+        String newPassword = MD5Utils.md5(loginVO.getPassword(),wxbMemeber.getAccount());
+        System.out.println("待验证密码加密后结果为"+newPassword);
+        if(!newPassword.equals(wxbMemeber.getPassword())){
+           throw  new PasswordWrongException("密码错误------》"+loginVO.getPassword());
+
+        }
+        return wxbMemeber;
     }
 
     @Override

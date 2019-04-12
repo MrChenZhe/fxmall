@@ -50,11 +50,19 @@ public class WxbGoodServlet {
      * 分页
      */
     @RequestMapping("/wxbGoodList")
-    public String wxbGoodList(int pageNo, Model model){
-        pageNo = (pageNo == 0) ? 1 : pageNo;
+    public String wxbGoodList(HttpServletRequest request,Model model){
+        String page=request.getParameter("pageNo");
+        page = (page == null||page=="0") ? "1" : page;
+        int pageNo = Integer.parseInt(page);
         List<WxbGood> wxbGoods = goodService.selectWxbGoodByPage(pageNo);
         String goodName = wxbGoods.get(0).getGoodName();
+        int count = goodService.wxbGoodCount();
+        int pageNum=(count%SystemConstantsUtils.Page.PAGE_SIZE==0?count/SystemConstantsUtils.Page.PAGE_SIZE:count/SystemConstantsUtils.Page.PAGE_SIZE+1);
         model.addAttribute("wxbGoods",wxbGoods);
+        model.addAttribute("pageNum",pageNum);
+        model.addAttribute("pageNo",pageNo);
+        model.addAttribute("count",count);
+        model.addAttribute("size",SystemConstantsUtils.Page.PAGE_SIZE);
         return "GoodList";
     }
 

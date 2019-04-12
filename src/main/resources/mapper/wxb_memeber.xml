@@ -43,9 +43,9 @@
     <select id="selectCount" resultType="java.lang.Integer">
     select count(*) from wxb_memeber
   </select>
-    <!--查找good_name是否重复-->
-    <select id="selectWxbMemeberName" resultMap="BaseResultMap">
-        select * from wxb_memeber where name=#{name}
+    <!--登录查找account-->
+    <select id="selectWxbMemeberAccount" resultMap="BaseResultMap">
+        select * from wxb_memeber where account=#{account}
     </select>
     <delete id="deleteWxbMemeber">
       delete from wxb_memeber where memeber_id =#{memeberId}

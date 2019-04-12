@@ -1,3 +1,6 @@
+import com.qianfeng.fxmall.WxbMemebers.Exception.AccountNotFoundException;
+import com.qianfeng.fxmall.WxbMemebers.Exception.PasswordWrongException;
+import com.qianfeng.fxmall.WxbMemebers.VO.LoginVO;
 import com.qianfeng.fxmall.WxbMemebers.bean.WxbMemeber;
 import com.qianfeng.fxmall.WxbMemebers.service.IWxbMemeberService;
 import org.junit.Test;
@@ -16,16 +19,16 @@ public class WxbMemeberTest {
     @Test
     public void add(){
         WxbMemeber wxbMemeber = new WxbMemeber();
-        wxbMemeber.setMemeberId("122");
-        wxbMemeber.setAccount("123");
-        wxbMemeber.setQqNum("122");
-        wxbMemeber.setPhone("122");
-        wxbMemeber.setPayAccount("122");
-        wxbMemeber.setName("陈哲");
+        wxbMemeber.setMemeberId("666");
+        wxbMemeber.setAccount("666");
+        wxbMemeber.setQqNum("666");
+        wxbMemeber.setPhone("666");
+        wxbMemeber.setPayAccount("666");
+        wxbMemeber.setName("陈哲666");
         wxbMemeber.setPassword("123456");
         wxbMemeber.setUseRecom(1L);
-        wxbMemeber.setLevelCode("122");
-        wxbMemeber.setMid(1222L);
+        wxbMemeber.setLevelCode("666");
+        wxbMemeber.setMid(666L);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         wxbMemeber.setUpdateTime(timestamp);
         wxbMemeber.setRegisterTime(timestamp);
@@ -33,10 +36,17 @@ public class WxbMemeberTest {
     }
     @Test
     public void loginValidate(){
-        WxbMemeber wxbMemeber = new WxbMemeber();
-        wxbMemeber.setName("陈哲");
+        LoginVO wxbMemeber = new LoginVO();
+        wxbMemeber.setUsername("666");
         wxbMemeber.setPassword("123456");
-        WxbMemeber memeber = wxbMemeberServiceImpl.loginCheck(wxbMemeber);
-        System.out.println(memeber.getEmail());
+        WxbMemeber memeber = null;
+        try {
+            memeber = wxbMemeberServiceImpl.loginCheck(wxbMemeber);
+        } catch (PasswordWrongException e) {
+            e.printStackTrace();
+        } catch (AccountNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println(memeber.getMemeberId());
     }
 }

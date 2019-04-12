@@ -411,18 +411,18 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_307679'%3E%3C/span%3E%3Cscri
                 url: action,
                 type: 'post',
                 data: data,
-                dataType: 'text',
+                dataType: 'JSON',
                 success: function (response) {
-                    alert("返回的值为"+response)
-                    var suc = response.split("#")[0];
-                    var msg = response.split("#")[1];
+                    alert("返回的值为"+response.suc+"------"+response.msg);
+                    var suc = response.suc;
+                    var msg = response.msg;
                     loading.revert();
                     if (suc == 'true') {
                         submitBtn.unbind('click');
                         $.cookie('loginErrorTimes',0);
                         toastr.success('', '登录成功');
                         if($("#user_type").val()==0){
-                            window.location.href = "WxbGood.do?m=wxbGoodList";
+                            window.location.href = "wxbGoodList";
                         }else{
                             alert("账号密码错误");
                             window.location.href = "/cust/index";

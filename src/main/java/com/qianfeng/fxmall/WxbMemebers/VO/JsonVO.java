@@ -1,5 +1,8 @@
 package com.qianfeng.fxmall.WxbMemebers.VO;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class JsonVO {
     private String suc;
     private String msg;
