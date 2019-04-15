@@ -31,10 +31,12 @@
       <param-value></param-value>
     </init-param>
   </servlet>
-  
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/static/*</url-pattern>
+    </servlet-mapping>
 
 
-  
   <servlet-mapping>
     <servlet-name>dispatcherservlet</servlet-name>
     <url-pattern>/</url-pattern>

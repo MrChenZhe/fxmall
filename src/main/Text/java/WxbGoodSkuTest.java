@@ -24,6 +24,6 @@ public class WxbGoodSkuTest {
     }
     @Test
     public void testdelete(){
-        gd.deleteGood(0000000001);
+        gd.deleteGood("0000000001");
     }
 }

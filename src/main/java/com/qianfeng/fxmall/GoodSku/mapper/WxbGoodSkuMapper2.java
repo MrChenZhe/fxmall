@@ -10,7 +10,7 @@ public interface WxbGoodSkuMapper2 {
     void  insertWxbGoodSku(WxbGoodSku wxbGoodSku);
     void  updateWxbGoodSku(WxbGoodSku wxbGoodSku);
     List<WxbGoodSku> wxbGoodSkuSelect(@Param("pageNo") Integer pageNo, @Param("size") Integer size);
-    void wxbGoodSkuDelete(@Param("skuId") Integer skuId);
+    void wxbGoodSkuDelete(@Param("skuId") String skuId);
     int selectCount();
-    String selectID(@Param("sku_id") String sku_id);
+    String selectID(@Param("skuId") String sku_id);
 }

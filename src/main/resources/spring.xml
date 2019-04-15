@@ -45,4 +45,23 @@
             <property name="prefix" value="/"/>
             <property name="suffix" value=".jsp"/>
       </bean>
+
+      <!--拦截器-->
+      <mvc:interceptors>
+            <mvc:interceptor>
+                  <mvc:mapping path="/**"/>
+                  <mvc:exclude-mapping path="/memeberlogin"/>
+                  <bean class="com.qianfeng.fxmall.commons.Intercepter.LoginIntercepter"/>
+            </mvc:interceptor>
+      </mvc:interceptors>
+
+    <!--上传配置-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!--设置上传文件的最大大小，单位byte，比如100000代表100KB-->
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="100000"/>
+
+    </bean>
 </beans>

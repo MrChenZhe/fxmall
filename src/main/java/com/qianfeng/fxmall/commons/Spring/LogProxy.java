@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class LogProxy {
     private Logger logger=Logger.getLogger(LogProxy.class);
     @Around("execution(public * com.qianfeng.fxmall.*.service.impl.*.*(..))")
-    public Object logging(ProceedingJoinPoint joinPoint) throws Exception {
+    public Object logging(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("---------------------------------------------------------------");
         Object proceed = null;
         try {
@@ -26,11 +26,11 @@ public class LogProxy {
             if(proceed!=null){
                 logger.debug("返回值为----->"+proceed.toString());
             }
+            return proceed;
         } catch (Throwable throwable) {
             logger.debug(throwable.getMessage());
             throwable.printStackTrace();
-            throw new Exception();
+            throw throwable;
         }
-        return proceed;
     }
 }

@@ -490,7 +490,7 @@
                                 <td align="right"><span class="red">*</span><strong>商品类型：</strong></td>
                                 <td>
                                     <select name="type_id" id="type_id" style="width:252px;font-size:14px" class="selectBox">
-                                        <option value=${good.typeId}>请选择...</option>
+                                        <option value=${good.typeId}>请选择...${wxbGoodType.typeName}</option>
 
                                         <c:forEach var="wxbGoodType" items="${wxbGoodTypes}">
                                         <option value="${wxbGoodType.typeId}">${wxbGoodType.typeName}</option>
@@ -516,7 +516,7 @@
                                 <td>
                                     <div id="sm_div">
 
-                                        <img src="http://localhost:8080/forFxmall/0c633458-0c8f-4039-a91b-dd41eef5c4b8.jpg" id="sm_yl" style="width:240px;height:150px;border:1px solid #ddd;">
+                                        <img src="${good.goodPic}" id="sm_yl" style="width:240px;height:150px;border:1px solid #ddd;">
 
 
                                     </div>
@@ -534,7 +534,7 @@
                                 <td>
                                     <div id="sm_div1">
 
-                                        <img src="./static/no_pic.png" id="sm_yl1" style="width:240px;height:150px;border:1px solid #ddd;">
+                                        <img src="${good.goodPic1}" id="sm_yl1" style="width:240px;height:150px;border:1px solid #ddd;">
 
 
                                     </div>
@@ -552,7 +552,7 @@
                                 <td>
                                     <div id="sm_div2">
 
-                                        <img src="./static/no_pic.png" id="sm_yl2" style="width:240px;height:150px;border:1px solid #ddd;">
+                                        <img src="${good.goodPic2}" id="sm_yl2" style="width:240px;height:150px;border:1px solid #ddd;">
 
 
                                     </div>
@@ -586,11 +586,11 @@
                                         </tr>
                                         <c:forEach var="sku" items="${good.wxbGoodSkuList}">
                                             <tr>
-                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.skuName}</th>
-                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.skuCost}</th>
-                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.skuPrice}</th>
-                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.skuPmoney}</th>
-                                                <th align="left" style="background-color:#F9F9F9">(<font color="red">*</font>)${sku.serviceMoney}</th>
+                                                <th align="left" style="background-color:#F9F9F9">${sku.skuName}</th>
+                                                <th align="left" style="background-color:#F9F9F9">${sku.skuCost}</th>
+                                                <th align="left" style="background-color:#F9F9F9">${sku.skuPrice}</th>
+                                                <th align="left" style="background-color:#F9F9F9">${sku.skuPmoney}</th>
+                                                <th align="left" style="background-color:#F9F9F9">${sku.serviceMoney}</th>
                                             </tr>
                                         </c:forEach>
                                         </tbody></table>
@@ -800,10 +800,10 @@
 <!-- menu over-->
 
 <script type="text/javascript">
-    var baseUrl = "http://localhost:8080/fxmall";
+    var baseUrl = "http://localhost:8080/fxmall/";
     function submitData(){
         var gid = "";
-        var url = "WxbGood.do?m=wxbGoodAdd&op=add";
+        var url = "wxbGoodAdd";
         //var spc_id = getRadioValue('scopy_id');
         var spc_ids = getCheckBoxValue('scopy_id');
         var zon_ids = getCheckBoxValue('zcopy_id');
@@ -917,16 +917,26 @@
             var sform = document.copy_form;
             if(sform){
                 sform.action = baseUrl+"/"+url;
+                // 套餐表所有内容
                 $('#sku_str').val(sku_str);
+                alert("sku_str---"+$('#sku_str').val());
+                //套餐描述
                 $('#sku_title').val(ms);
+                alert("sku_title---"+$('#sku_title').val());
                 $('#sku_cost').val(cb);
+                alert("sku_cost---"+$('#sku_cost').val());
                 $('#sku_price').val(jg);
+                alert("sku_price---"+$('#sku_price').val());
                 $('#sku_pmoney').val(fc);
+                alert("sku_pmoney---"+$('#sku_pmoney').val());
                 $('#service_money').val(kffc);
+                alert("service_money---"+$('#service_money').val());
                 $('#copy_id').val(copy_ids);
+                alert("copy_id---"+$('#copy_id').val());
                 $('#spc_id').val(spc_ids);
+                alert("spc_id---"+$('#spc_id').val());
                 $('#zon_id').val(zon_ids);
-
+                alert("zon_id---"+$('#zon_id').val());
                 setTimeout(function(){
                     sform.submit();
                 },500);

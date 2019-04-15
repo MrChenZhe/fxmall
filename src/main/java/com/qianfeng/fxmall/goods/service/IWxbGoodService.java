@@ -2,6 +2,7 @@ package com.qianfeng.fxmall.goods.service;
 
 import com.qianfeng.fxmall.WxbGoodTypes.bean.WxbGoodType;
 import com.qianfeng.fxmall.goods.bean.WxbGood;
+import com.qianfeng.fxmall.goods.vo.GoodAddVO;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface IWxbGoodService {
     Boolean selectGoodName(String goodId);
     String createId();
     WxbGood selectGoodById(String goodId);
+    void insertGoodAddVo(GoodAddVO goodAddVO);
 }

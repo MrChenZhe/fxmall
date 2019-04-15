@@ -7,8 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
+    <h3><%=request.getContextPath()%></h3>
+    <%--<base href="/">--%>
     <title>自媒体盈利平台</title>
     <meta name="keywords" content="CPS联盟，微信派单接单，微信盈利联盟，微信盈利，微信盈利平台，盈利联盟，微信广告联盟，微联盟">
     <meta property="qc:admins" content="4441727777670263757">
@@ -420,7 +420,7 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_307679'%3E%3C/span%3E%3Cscri
                     if (suc == 'true') {
                         submitBtn.unbind('click');
                         $.cookie('loginErrorTimes',0);
-                        toastr.success('', '登录成功');
+                        toastr.success(msg, '登录成功');
                         if($("#user_type").val()==0){
                             window.location.href = "wxbGoodList";
                         }else{

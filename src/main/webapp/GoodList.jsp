@@ -190,7 +190,7 @@
                         </li>
 
                         <li>
-                            <a href="http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodAdd&op=selectgoodType">
+                            <a href="addGoodSelectType">
                                 <i class="icon-pencil"></i>
                                 增加商品
                             </a>
@@ -496,7 +496,7 @@
                                             <td class="center">
                                                     ${good.goodId}
                                             </td>
-                                            <td class="left"><a href="http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodSelectByName&goodId=${good.goodId}" onclick="window.location.href= 'http://localhost:8080/fxmall/WxbGood.do?m=wxbGoodSelectByName&goodId=${good.goodId}">${good.goodName}</a></td>
+                                            <td class="left"><a href="wxbGoodSelectByName?goodId=${good.goodId}" onclick="window.location.href= 'wxbGoodSelectByName?goodId=${good.goodId}">${good.goodName}</a></td>
                                             <td class="center">${good.skuPrice}</td>
                                             <td class="center">${good.skuPmoney}</td>
                                             <td class="center">${good.createTime}</td>

@@ -29,7 +29,7 @@ public class WxbGoodSkuDAOImpl implements IWxbGoodSkuDAO {
     }
 
     @Override
-    public void deleteGood(Integer goodId) {
+    public void deleteGood(String goodId) {
         wxbGoodSkuMapper2.wxbGoodSkuDelete(goodId);
     }
 

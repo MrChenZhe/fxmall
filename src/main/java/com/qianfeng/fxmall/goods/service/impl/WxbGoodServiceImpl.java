@@ -8,6 +8,7 @@ import com.qianfeng.fxmall.goods.bean.WxbGood;
 import com.qianfeng.fxmall.goods.dao.IWxbGoodDAO;
 import com.qianfeng.fxmall.goods.dao.impl.WxbGoodDAOImpl;
 import com.qianfeng.fxmall.goods.service.IWxbGoodService;
+import com.qianfeng.fxmall.goods.vo.GoodAddVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -65,12 +66,17 @@ public class WxbGoodServiceImpl implements IWxbGoodService {
         String id = "14886110";
         do {
             id = RandString.generateString(10);
-        }while(selectGoodName(id));
+        }while(!selectGoodName(id));
         return id;
     }
 
     @Override
     public WxbGood selectGoodById(String goodId) {
         return goodDAO.selectGoodById(goodId);
+    }
+
+    @Override
+    public void insertGoodAddVo(GoodAddVO goodAddVO) {
+        goodDAO.insertGoodAddVo(goodAddVO);
     }
 }

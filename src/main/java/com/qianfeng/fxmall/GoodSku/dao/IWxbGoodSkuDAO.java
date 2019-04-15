@@ -9,7 +9,7 @@ public interface IWxbGoodSkuDAO {
     List<WxbGoodSku> selectWxbGoodByPage(int Page);
     void  insertWxbGoodAndSku(WxbGoodSku WxbGoodSku);
     void  updateWxbGood(WxbGoodSku WxbGoodSku);
-    void deleteGood(Integer GoodSkuId);
+    void deleteGood(String GoodSkuId);
     int wxbGoodCount();
     String selectID(String sku_id);
 }

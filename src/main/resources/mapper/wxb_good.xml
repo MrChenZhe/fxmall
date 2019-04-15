@@ -67,7 +67,7 @@
     </select>
 
     <select id="selectGoodById" resultMap="selectGoodAndStu">
-        select * from wxb_good  where good_id=#{goodId};
+        select * from wxb_good g  LEFT JOIN wxb_good_sku w on g.good_id=w.good_id where g.good_id=#{goodId};
     </select>
 
     <select id="selectCount" resultType="java.lang.Integer">
@@ -78,6 +78,15 @@
     </delete>
     <!--查找good_name是否重复-->
     <select id="selectGoodName" resultType="java.lang.String">
-        select good_name from wxb_good where good_id=#{goodID}
+        select good_name from wxb_good where good_id=#{goodId}
     </select>
+    <insert id="insertGoodAddVo">
+       insert into wxb_good(good_id,good_name,customer_id,good_pic,good_pic1,good_pic2,promote_desc,
+        sku_title,sku_cost,sku_price,sku_pmoney,copy_ids,copy_desc,forward_link,order_no,type_id,tags,state,create_time,
+        toped,recomed,toped_time,recomed_time,spc_id,zon_id,sell_num,website,iswxpay,isfdfk,leixing_id,kfqq)
+        values(#{good_id},#{good_name},#{customerId},#{goodPic},#{goodPic1},#{goodPic2},#{promote_desc},
+        #{sku_title},#{sku_cost},#{sku_price},#{sku_pmoney},#{copy_id},#{copy_desc},#{forward_link},#{order_no},
+        #{type_id},#{tags},#{state},#{createTime},#{toped},#{recomed},#{topedTime},#{recomedTime},#{spc_id},
+        #{zon_id},#{sell_num},#{website},#{iswxpay},#{isfdfk},#{leixingId},#{kfqq});
+    </insert>
 </mapper>

@@ -4,6 +4,7 @@ import com.qianfeng.fxmall.commons.info.SystemConstantsUtils;
 import com.qianfeng.fxmall.goods.bean.WxbGood;
 import com.qianfeng.fxmall.goods.dao.IWxbGoodDAO;
 import com.qianfeng.fxmall.goods.mapper.WxbGoodMapper;
+import com.qianfeng.fxmall.goods.vo.GoodAddVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -49,5 +50,10 @@ public class WxbGoodDAOImpl implements IWxbGoodDAO {
     public WxbGood selectGoodById(String goodId) {
 
         return wxbGoodMapper.selectGoodById(goodId);
+    }
+
+    @Override
+    public void insertGoodAddVo(GoodAddVO goodAddVO) {
+        wxbGoodMapper.insertGoodAddVo(goodAddVO);
     }
 }

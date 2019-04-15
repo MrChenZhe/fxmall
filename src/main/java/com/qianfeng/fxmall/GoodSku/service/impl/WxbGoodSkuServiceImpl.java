@@ -21,38 +21,47 @@ public class WxbGoodSkuServiceImpl implements IWxbGoodSkuService {
 
 
     @Override
-    public List<WxbGood> selectWxbGoodByPage(int Page) {
+    public List<WxbGoodSku> selectWxbGoodByPage(int Page) {
+        goodDAO.selectWxbGoodByPage(Page);
         return null;
     }
 
     @Override
-    public void insertWxbGoodAndSku(WxbGood wxbGood) {
-
+    public void insertWxbGoodAndSku(WxbGoodSku wxbGood) {
+        goodDAO.insertWxbGoodAndSku(wxbGood);
     }
 
     @Override
-    public void updateWxbGood(WxbGood wxbGood) {
-
+    public void updateWxbGood(WxbGoodSku wxbGood) {
+        goodDAO.updateWxbGood(wxbGood);
     }
 
     @Override
-    public void deleteGood(Integer goodId) {
-
+    public void deleteGood(String goodId) {
+        goodDAO.deleteGood(goodId);
     }
 
     @Override
     public int wxbGoodCount() {
-        return 0;
+        return goodDAO.wxbGoodCount();
     }
 
     @Override
     public Boolean selectGoodSkuId(String goodId) {
-        return null;
+        String selectID = goodDAO.selectID(goodId);
+        if(selectID!=null){
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String createId() {
-        return null;
+        String id="";
+        do {
+            id = RandString.generateString(10);
+        }while(!selectGoodSkuId(id));
+        return id;
     }
 }
 
